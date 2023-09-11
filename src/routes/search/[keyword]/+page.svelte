@@ -1,11 +1,13 @@
 <script>
   import MovieCard from '../../../components/MovieCard.svelte';
+  import { page } from '$app/stores';
 
   export let data;
-  const searchedMovies = data.results;
+  $: searchedMovies = data.results;
+  $: searchedMedia = $page.params.keyword;
 </script>
 
-<h2>Search</h2>
+<h2>"{searchedMedia}"</h2>
 <div class="searched-movies">
   {#each searchedMovies as movie}
     <MovieCard media={movie}/>
