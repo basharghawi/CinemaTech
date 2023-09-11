@@ -1,43 +1,47 @@
 <script>
-  export let data;
-  console.log(data);
+  import Similar from '../../../components/Similar.svelte';
   import backdropImage from '../../../images/empty-backdrop.jpg';
+
+  export let data;
+  $: movie = data.movie
+  $: similar = data.similar.results;
 </script>
 
 <svelte:head>
-  <title>{data.title}</title>
-  <meta name="description" content={data.overview} />
+  <title>{movie.title}</title>
+  <meta name="description" content={movie.overview} />
 </svelte:head>
 
 <div class="movie-detail">
   <div class="img-container">
-    {#if data.backdrop_path != null}
-        <img src={'https://image.tmdb.org/t/p/w500' + data.backdrop_path} alt={data.title} title={data.title} />
+    {#if movie.backdrop_path != null}
+        <img src={'https://image.tmdb.org/t/p/original' + movie.backdrop_path} alt={movie.title} title={movie.title} />
     {:else}
-        <img src={backdropImage} alt="empty poster" title={data.title} />
+        <img src={backdropImage} alt="empty poster" title={movie.title} />
     {/if}
-    <!-- <img src={'https://image.tmdb.org/t/p/original' + data.backdrop_path} alt={data.title} title={data.title}> -->
   </div>
   <div class="title">
-    <h1>{data.title}</h1>
+    <h1>{movie.title}</h1>
     <div class="geners">
-      {#each data.genres as genre}
+      {#each movie.genres as genre}
         <span class="genres_item">{genre.name}</span>
       {/each}
     </div>
   </div>
-  {#if data.tagline !== ''}
-    <p class="tagline">{data.tagline}</p>
+  {#if movie.tagline !== ''}
+    <p class="tagline">"{movie.tagline}"</p>
   {/if}
-  <p class="overview">{data.overview}</p>
+  <p class="overview">{movie.overview}</p>
   <p>
-    <span>Release Date: {data.release_date}</span>
+    <span>Release Date: {movie.release_date}</span>
     <br>
-    <span>Rating: {Number.parseFloat(data.vote_average).toFixed(1)}</span>
+    <span>Rating: {Number.parseFloat(movie.vote_average).toFixed(1)}</span>
     <br>
-    <span>Runtime: {data.runtime} min</span>
+    <span>Runtime: {movie.runtime} min</span>
   </p>
+  <Similar media={similar}/>
 </div>
+
 
 <style>
   * {
@@ -90,11 +94,12 @@
     font-style: italic;
     opacity: .7;
   }
-  /* img {
+  img {
     border-radius: 20px;
-  } */
+  }
   .movie-detail {
-    margin: 2rem 20%;
+    margin: 2rem auto;
+    max-width: 864px;
     @media (max-width: 967px) {
       margin: 1rem 3%;
     }

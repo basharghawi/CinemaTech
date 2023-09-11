@@ -1,10 +1,12 @@
 <script>
-  export let media
-  let {media_type} = media;
   import posterImage from '../images/empty-poster.jpg'
+
+  export let media
+  $: media_type = media.media_type;
+  $: first_air_date = media.first_air_date;
 </script>
 
-{#if media_type === 'movie'}
+{#if media_type === 'movie' || !first_air_date}
   <div class="movie-card">
     <a href={'/movie/' + media.id}>
       {#if media.poster_path}
@@ -15,7 +17,7 @@
     </a>
     <h3>{media.title}</h3>
     <p>
-      {media.release_date}
+      {Number.parseFloat(media.vote_average).toFixed(1)} / 10
     </p>
   </div>
 {:else}
@@ -29,7 +31,7 @@
     </a>
     <h3>{media.name}</h3>
     <p>
-      {media.first_air_date}
+      {Number.parseFloat(media.vote_average).toFixed(1)} / 10
     </p>
   </div>
 {/if}
@@ -59,7 +61,9 @@
     }
     & p {
       font-size: 0.7rem;
-      color: #F7ECE1;
+      /* color: #F7ECE1; */
+      color: #ffcf57;
+      font-weight: bold;
       background-color: #725AC1;
       padding: 4px 7px;
       width: fit-content;
