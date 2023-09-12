@@ -1,22 +1,20 @@
-// export async function load({ fetch, params }) {  // SSR
-//   const options = {method: 'GET', headers: {accept: 'application/json'}};
-//   const res = await fetch(`https://api.themoviedb.org/3/tv/${params.id}?language=en-US&api_key=02295eae3f494b5f2fa0f6d4188b3a34`, options);
-//   const data = await res.json();
-//   if (res.ok) {
-//     return data
-//   }
-// }
-
-export async function load({ fetch, params }) {  // SSR
+export async function load({params}) {
   const options = {method: 'GET', headers: {accept: 'application/json'}};
-  const [tv, similar] = await Promise.all([
-    fetch(`https://api.themoviedb.org/3/tv/${params.id}?api_key=02295eae3f494b5f2fa0f6d4188b3a34`, options),
-    fetch(`https://api.themoviedb.org/3/tv/${params.id}/similar?language=en-US&page=1&api_key=02295eae3f494b5f2fa0f6d4188b3a34`, options)
-  ])
-  const movieData = await tv.json();
-  const similarData = await similar.json();
+
+  const fetchTv = async () => {
+    const tvData = await fetch(`https://api.themoviedb.org/3/tv/${params.id}?api_key=02295eae3f494b5f2fa0f6d4188b3a34`, options);
+    const tvShow = await tvData.json();
+    return tvShow;
+  }
+
+  const fetchSimilar = async () => {
+    const similarData = await fetch(`https://api.themoviedb.org/3/tv/${params.id}/similar?language=en-US&page=1&api_key=02295eae3f494b5f2fa0f6d4188b3a34`, options);
+    const similarShows = await similarData.json();
+    return similarShows;
+  }
+
   return {
-    tv : movieData,
-    similar : similarData
+    tv: fetchTv(),
+    similar: fetchSimilar()
   }
 }

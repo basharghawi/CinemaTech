@@ -1,15 +1,21 @@
-export const load = async ({ fetch }) => {  // SSR
+// import 'dotenv/config'
+export const load = async () => {
   const options = {method: 'GET', headers: {accept: 'application/json'}};
-  const [movie, tv] = await Promise.all([
-    fetch('https://api.themoviedb.org/3/trending/movie/week?api_key=02295eae3f494b5f2fa0f6d4188b3a34&page=1', options),
-    fetch('https://api.themoviedb.org/3/trending/tv/week?language=en-US&api_key=02295eae3f494b5f2fa0f6d4188b3a34', options)
-  ])
-  const moviesData = await movie.json();
-  const tvData = await tv.json();
-  // console.log(moviesData);
-  // console.log(tvData);
+  const fetchMovies = async () => {
+    const moviesData = await fetch('https://api.themoviedb.org/3/trending/movie/week?api_key=02295eae3f494b5f2fa0f6d4188b3a34&page=1', options);
+    const movies = await moviesData.json();
+    return movies;
+  }
+  const fetchTv = async () => {
+    const tvData = await fetch('https://api.themoviedb.org/3/trending/tv/week?language=en-US&api_key=02295eae3f494b5f2fa0f6d4188b3a34', options);
+    const tvShows = await tvData.json();
+    return tvShows;
+  }
+
+  // console.log(tv());
+  // console.log(movie());
   return {
-    movies : moviesData,
-    tvShows : tvData
+    movies : fetchMovies(),
+    tvShows : fetchTv()
   }
 }

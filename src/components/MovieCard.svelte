@@ -45,7 +45,7 @@
     }
     & h3 {
       font-size: 0.9rem;
-      font-weight: bold;
+      font-weight: 500;
       color: #F7ECE1;
       margin-bottom: 10px;
       height: 42px;
