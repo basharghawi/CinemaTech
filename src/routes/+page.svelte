@@ -6,8 +6,6 @@
   export let data;
   let movies = data.movies.results,
   tvShows = data.tvShows.results;
-  // console.log(tvShows);
-  // console.log(movies);
 </script>
 
 <svelte:head>

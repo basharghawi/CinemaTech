@@ -2,6 +2,7 @@
   import MovieCard from "./MovieCard.svelte";
 
   export let media;
+  let mediaSliced = media.slice(0,10);
   let media_type = media[0].media_type;
 </script>
 
@@ -11,7 +12,7 @@
   <h2>Trending TV Shows</h2>
 {/if}
 <div class="trending">
-  {#each media as mediaItem}
+  {#each mediaSliced as mediaItem}
     <MovieCard media={mediaItem}/>
   {/each}
 </div>
@@ -22,6 +23,9 @@
     font-weight: bold;
     padding: 0 1rem;
     color: #F7ECE1;
+    padding-bottom: 5px;
+    border-bottom: 1px #F7ECE1;
+    border-style: dotted;
     margin-bottom: 25px;
   }
   .trending {
