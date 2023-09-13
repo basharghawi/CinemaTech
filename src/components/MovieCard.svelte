@@ -6,7 +6,7 @@
   $: first_air_date = media.first_air_date;
 </script>
 
-{#if media_type === 'movie' || !first_air_date}
+{#if media_type === 'movie' || first_air_date === undefined}
   <div class="movie-card">
     <a href={'/movie/' + media.id}>
       {#if media.poster_path}

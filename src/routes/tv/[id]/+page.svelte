@@ -5,6 +5,7 @@
   export let data;
   $: tv = data.tv
   $: similar = data.similar.results;
+  // console.log(data);
 </script>
 
 <svelte:head>
