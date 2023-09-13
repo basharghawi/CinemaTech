@@ -326,7 +326,7 @@ textarea {
   /* 2 */
   vertical-align: baseline;
   /* 3 */
-  *vertical-align: middle;
+  vertical-align: middle;
   /* 3 */
 }
 
@@ -376,7 +376,7 @@ input[type="submit"] {
   /* 2 */
   cursor: pointer;
   /* 3 */
-  *overflow: visible;
+  overflow: visible;
   /* 4 */
 }
 

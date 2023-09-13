@@ -1,5 +1,5 @@
 import { TMDB_API_KEY } from '$env/static/private'
-export const load = async () => {
+export async function load()  {
   const options = {method: 'GET', headers: {accept: 'application/json'}};
   const fetchMovies = async () => {
     const moviesData = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_API_KEY}&page=1`, options);
