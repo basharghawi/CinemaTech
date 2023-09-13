@@ -36,7 +36,7 @@
   }
   function paginationItemClick(event) {
     const targetButton = event.target;
-    currPage = targetButton.innerText;
+    currPage = Number(targetButton.innerText);
     fetchRes(currPage);
   }
 </script>
