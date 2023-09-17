@@ -24,6 +24,6 @@
 
 <style>
   .tv {
-    margin-top: 50px;
+    margin: 60px 0;
   }
 </style>

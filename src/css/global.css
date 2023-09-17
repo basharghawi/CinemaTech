@@ -31,4 +31,7 @@ img {
   & .movie-card h3 {
     font-weight: normal !important;
   }
+  & .movie-card .card_wrapper {
+    display: none !important;
+  }
 }
