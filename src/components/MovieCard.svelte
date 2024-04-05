@@ -11,9 +11,9 @@
   <div class="movie-card">
     <a href={'/movie/' + media.id}>
       {#if media.poster_path}
-        <img src={'https://image.tmdb.org/t/p/w500' + media.poster_path} alt={media.title} title={media.title} />
+        <img src={'https://image.tmdb.org/t/p/w500' + media.poster_path} alt={media.title} title={media.title} loading="lazy" />
       {:else}
-        <img src={posterImage} alt="empty poster" title={media.title} />
+        <img src={posterImage} alt="empty poster" title={media.title} loading="lazy" />
       {/if}
       <div class="card_wrapper">
         <div class="card_box card__box--a">

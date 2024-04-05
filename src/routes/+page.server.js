@@ -1,3 +1,6 @@
+// import client from "../sanityClient";
+// import groq from 'groq';
+
 export async function load()  {
   const options = {method: 'GET', headers: {accept: 'application/json'}};
   const fetchMovies = async () => {
@@ -10,9 +13,16 @@ export async function load()  {
     const tvShows = await tvData.json();
     return tvShows;
   }
+  // const sanity = async () => {
+  //   const press = await client.fetch(groq`*[_type == "post"]`);
+  //   // const tvShows = await tvData.json();
+  //   // console.log(press);
+  //   return press;
+  // }
 
   return {
     movies : fetchMovies(),
-    tvShows : fetchTv()
+    tvShows : fetchTv(),
+    // pressR: sanity()
   }
 }

@@ -4,8 +4,10 @@
   import Trending from "../components/Trending.svelte";
   
   export let data;
-  let movies = data.movies.results,
-  tvShows = data.tvShows.results;
+  let movies = data.movies.results;
+  let tvShows = data.tvShows.results;
+  // let press = data.pressR;
+  // console.log(press);
 </script>
 
 <svelte:head>
@@ -18,7 +20,7 @@
   <Trending media={movies} />
 </section>
 
-<section class="tv">
+<section class="tv" transition:fly={{ duration: 300, y: 100 }}>
   <Trending media={tvShows} />
 </section>
 
